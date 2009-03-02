@@ -1,9 +1,9 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-require 'skip_collabo/fulltext_search_cache'
+require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
+require 'skip_collabo/fulltext_search_cache/mediator'
 
 describe SkipCollabo::FulltextSearchCache, "new('path/to/cache/root', :since => 15.seconds.ago)", :type => :model do
   before do
-    @fts_cache = SkipCollabo::FulltextSearchCache.new(:cache_dir => 'path/to/cache/root/app_cache', :url_prefix => "http://example.com", :since => 15.seconds.ago)
+    @fts_cache = SkipCollabo::FulltextSearchCache::Mediator.new(:cache_dir => 'path/to/cache/root/app_cache', :url_prefix => "http://example.com", :since => 15.seconds.ago)
   end
 
   it{ @fts_cache.cache_dir.should == 'path/to/cache/root/app_cache' }

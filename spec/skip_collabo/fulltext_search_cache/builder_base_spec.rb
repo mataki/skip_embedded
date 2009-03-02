@@ -4,22 +4,21 @@
 require File.expand_path("../../spec_helper", File.dirname(__FILE__))
 require 'skip_collabo/fulltext_search_cache/builder_base'
 
-describe SkipCollabo::FulltextSearch::BuilderBase, :type => :model do
+describe SkipCollabo::FulltextSearchCache::BuilderBase, :type => :model do
   before do
     @url_writer = mock("url_writer")
 
-    SkipCollabo::FulltextSearch::BuilderBase.stub!(:url_writer).and_return(@url_writer)
-    SkipCollabo::FulltextSearch::BuilderBase.entity_name = "target"
+    SkipCollabo::FulltextSearchCache::BuilderBase.stub!(:url_writer).and_return(@url_writer)
+    SkipCollabo::FulltextSearchCache::BuilderBase.entity_name = "target"
+    ActionController::UrlWriter.default_url_options[:host]  = "asset.example.com"
+    ActionController::AbstractRequest.stub!(:relative_url_root).and_return("")
 
-    @it = SkipCollabo::FulltextSearch::BuilderBase.new("--- entity ---")
+    @it = SkipCollabo::FulltextSearchCache::BuilderBase.new("--- entity ---")
   end
 
   it{ @it.target.should == "--- entity ---" }
 
-  it{
-    @url_writer.should_receive(:root_url).and_return("http://asset.example.com/")
-    @it.icon_url.should == "http://asset.example.com/images/icons/target.gif"
-  }
+  it{ @it.icon_url.should == "http://asset.example.com/images/icons/target.gif" }
 
   it "to_metaはovverrideしてつかうこと" do
     lambda{ @it.to_meta }.should raise_error(NotImplementedError)

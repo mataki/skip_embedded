@@ -1,3 +1,4 @@
+require 'skip_collabo/fulltext_search_cache'
 require "skip_collabo/fulltext_search_cache/partial_loader"
 
 module SkipCollabo
