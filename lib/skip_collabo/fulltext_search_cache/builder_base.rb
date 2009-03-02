@@ -1,16 +1,16 @@
 
 module SkipCollabo
-  module FulltextSearch
+  module FulltextSearchCache
     class BuilderBase
-      cattr_accessor :entity_name
-
-      def self.url_writer
-        @url_writer ||= Object.new.tap{|o| o.extend(ActionController::UrlWriter) }
-      end
-      def url_writer; self.class.url_writer end
+      include ActionController::UrlWriter
+      class_inheritable_accessor :entity_name
 
       def initialize(entity)
         @entity = entity
+      end
+
+      def filename
+        "#{entity_name}/#{@entity.id}.html"
       end
 
       def write_cache(mediator)
@@ -38,7 +38,7 @@ HTML
       def body; raise NotImplementedError, "ovverride me" end
 
       def icon_url(icon_filename = entity_name + ".gif")
-        url_writer.root_url + "images/icons/" + icon_filename
+        root_url + "images/icons/" + icon_filename
       end
 
       private
