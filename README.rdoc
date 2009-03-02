@@ -1,0 +1,37 @@
+
+= skip_collabo
+
+Utilities to collabolate SKIP, opensource buisiness SNS.
+
+== Description
+
+skip_collabo make to build skip-collaborate apps easy,
+  it have the features...
+
+- Create SKIP style fulltext search cache.
+
+== Installation
+
+=== Archive Installation
+
+	rake install
+
+=== Gem Installation
+
+	gem install skip_collabo
+
+
+== Features/Problems
+
+ lator
+
+== Synopsis
+
+ lator
+
+== Copyright
+
+Author::    MOROHASHI Kyosuke k-morohashi@esm.co.jp
+Copyright:: Copyright (c) 2009 SonicGraden LLC # FIXME
+License:: GPL v3
+
