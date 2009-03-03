@@ -10,10 +10,9 @@ describe SkipCollabo::FulltextSearchCache::BuilderBase, :type => :model do
 
     SkipCollabo::FulltextSearchCache::BuilderBase.stub!(:url_writer).and_return(@url_writer)
     SkipCollabo::FulltextSearchCache::BuilderBase.entity_name = "target"
-    ActionController::UrlWriter.default_url_options[:host]  = "asset.example.com"
-    ActionController::AbstractRequest.stub!(:relative_url_root).and_return("")
 
     @it = SkipCollabo::FulltextSearchCache::BuilderBase.new("--- entity ---")
+    @it.stub!(:root_url).and_return("http://asset.example.com/")
   end
 
   it{ @it.target.should == "--- entity ---" }

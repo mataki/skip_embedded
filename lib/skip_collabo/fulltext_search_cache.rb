@@ -1,18 +1,17 @@
-require "config/environment"
 require "fileutils"
+require "skip_collabo/initial_settings"
 require "skip_collabo/fulltext_search_cache/mediator"
 
 module SkipCollabo
   module FulltextSearchCache
     DEFAULT_OPTIONS = {
-      :cache_dir => File.expand_path("fts_cache/app_cache", Rails.root),
-      #:entity_dirs => %w[note page attachment],
-      :logger    => Rails.logger,
+      :cache_dir => File.expand_path("fts_cache/app_cache", Dir.pwd),
+      :logger    => ActionController::Base.logger,
       :limit => 1_000,
     }.freeze
 
     def self.build(model_and_builders, options = {})
-      if skip_url = (INITIAL_SETTINGS[:skip_collabolation] && INITIAL_SETTINGS[:skip_collabolation][:skip_url])
+      if skip_url = (InitialSettings[:skip_collabolation] && InitialSettings[:skip_collabolation][:skip_url])
         set_default_url_options(skip_url)
       else
         $stderr.puts "set skip_collabolation -> skip_url in config/initial_settings.yml"
