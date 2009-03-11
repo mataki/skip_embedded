@@ -1,0 +1,31 @@
+#flash_message {
+  position: absolute;
+  top: 3px;
+  width: 100%;
+  z-index: 1; }
+  #flash_message div {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    font-size: 12px;
+    border-width: 2px;
+    border-style: solid; }
+    #flash_message div h3 {
+      width: 100%; }
+      #flash_message div h3 span {
+        position: static;
+        font-size: 10px;
+        margin-left: 20px;
+        right: 15px;
+        top: 15px; }
+  #flash_message div.warn {
+    border-color: orange;
+    background-color: yellow; }
+  #flash_message div.notice {
+    border-color: limegreen;
+    background-color: palegreen; }
+  #flash_message div.error {
+    border-color: red;
+    background-color: pink; }
+
+

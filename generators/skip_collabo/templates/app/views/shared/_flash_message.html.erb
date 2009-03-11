@@ -1,0 +1,13 @@
+<div id="flash_message">
+  <%= render_flash(:error) %>
+  <%= render_flash(:warn) %>
+  <%= render_flash(:notice) %>
+</div>
+
+<%- javascript_tag do %>
+  jQuery(document).ready(function(){
+    $("#flash_message div").click(function(){$(this).fadeOut("slow")});
+    setTimeout(function(){ $("#flash_message div.notice").trigger("click"); }, 2*1000);
+    setTimeout(function(){ $("#flash_message div.warn").trigger("click"); }, 5*1000);
+  });
+<% end %>
