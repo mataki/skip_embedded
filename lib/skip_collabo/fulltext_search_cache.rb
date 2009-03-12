@@ -1,4 +1,7 @@
 require "fileutils"
+
+require "config/environment" unless defined? ActionController
+
 require "skip_collabo/initial_settings"
 require "skip_collabo/fulltext_search_cache/mediator"
 
@@ -11,7 +14,7 @@ module SkipCollabo
     }.freeze
 
     def self.build(model_and_builders, options = {})
-      if skip_url = (InitialSettings[:skip_collabolation] && InitialSettings[:skip_collabolation][:skip_url])
+      if skip_url = (InitialSettings[:skip_collabolation] && InitialSettings[:skip_collabolation]["skip_url"])
         set_default_url_options(skip_url)
       else
         $stderr.puts "set skip_collabolation -> skip_url in config/initial_settings.yml"
