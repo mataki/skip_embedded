@@ -1,0 +1,45 @@
+
+= skip_collabo
+
+SKIPと連携するアプリを作るためのユーティリティです。
+
+== Description
+
+以下の機能があります
+
+- SKIPと全文検索連携するために必要なキャッシュの生成
+- SKIP連携アプリ標準形式の設定ファイルの読み込み
+- OpenIDを使った疑似SSO
+- 画面JSなどの部品ジェネレータと、それをRailsから使うためのヘルパーメソッド
+-- Javascript
+--- ドロップダウンメニューからの画面遷移
+--- デフォルトのメッセージつきの検索ボックス
+-- ERB + Helper
+--- clippyを使って文字列をコピーさせる機能
+--- 画面上部に表示され、自動的に消えるflash
+
+== Installation
+
+=== Archive Installation
+
+	rake install
+
+=== Gem Installation
+
+	gem install skip_collabo
+
+
+== Features/Problems
+
+ lator
+
+== Synopsis
+
+ lator
+
+== Copyright
+
+Author::    MOROHASHI Kyosuke k-morohashi@esm.co.jp
+Copyright:: Copyright (c) 2009 SonicGraden LLC # FIXME
+License:: GPL v3
+
