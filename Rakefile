@@ -61,7 +61,7 @@ spec = Gem::Specification.new do |s|
 	s.test_files        = Dir["spec/**/*_spec.rb"]
 
 	s.files = %w(README.rdoc ChangeLog Rakefile) +
-		Dir.glob("{bin,doc,test,lib,templates,generator,extras,website,script}/**/*") + 
+		Dir.glob("{bin,doc,test,lib,templates,generators,extras,website,script}/**/*") + 
 		Dir.glob("spec/**/*.rb") +
 		Dir.glob("ext/**/*.{h,c,rb}") +
 		Dir.glob("examples/**/*.rb") +
