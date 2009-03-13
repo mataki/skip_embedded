@@ -1,11 +1,25 @@
+require 'json'
 require 'net/http'
 require "net/https"
 require 'uri'
 require 'erb'
 
+require 'skip_collabo/initial_settings'
+
 module SkipCollabo
   class WebServiceUtil
     module Client
+      attr_writer :logger
+      def logger
+        @logger ||= if defined?(ActiveRecord::Base)
+                      ActiveRecord::Base.logger
+                    elsif defined?(Rails)
+                      Rails.logger
+                    elsif
+                      require 'logger'
+                      Logger.new
+                    end
+      end
       # 別のWebアプリのWeb-APIをコールするためのユーティリティメソッド
       # Webアプリ連携の際は、このメソッドを経由して利用すること
       # 引数
@@ -13,9 +27,11 @@ module SkipCollabo
       #    :service_name = 呼び出したいWeb-APIの名前
       #    :params = 呼び出す際のパラメータ
       #    :controller_name = サービスのコントローラパス（デフォルトの規約は"services"）
-      #      services以外を指定も可能だが、それは茨の道と思へ
+      #      services以外を指定も可能
       def open_service app_name, service_name, params={}, controller_name="services"
-        app_url, app_ca_file = if app = INITIAL_SETTINGS['collaboration_apps'][app_name.to_s]
+        ActiveSupport::Deprecation.warn("use 'open_service_with_url' with specified endopoint.")
+
+        app_url, app_ca_file = if app = InitialSettings['collaboration_apps'][app_name.to_s]
                                  [ app["url"], app["ca_file"] ]
                                else
                                  [nil, nil]
@@ -43,15 +59,15 @@ module SkipCollabo
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE
           end
         end
-        response = http.get("#{uri.path}?#{uri.query}", "X-SECRET-KEY" => INITIAL_SETTINGS['secret_key'])
+        response = http.get("#{uri.path}?#{uri.query}", "X-SECRET-KEY" => InitialSettings['secret_key'])
         if response.code == "200"
           JSON.parse(response.body)
         else
-          ActiveRecord::Base.logger.error "[WebServiceUtil Error] Response code is #{response.code} to access #{url}"
+          logger.error "[WebServiceUtil Error] Response code is #{response.code} to access #{url}"
           nil
         end
       rescue Errno::ECONNREFUSED, OpenSSL::SSL::SSLError, SocketError, ArgumentError, JSON::ParserError, URI::InvalidURIError => ex
-        ActiveRecord::Base.logger.error "[WebServiceUtil Error] #{ex.to_s} to access #{url}"
+        logger.error "[WebServiceUtil Error] #{ex.to_s} to access #{url}"
         nil
       end
     end
