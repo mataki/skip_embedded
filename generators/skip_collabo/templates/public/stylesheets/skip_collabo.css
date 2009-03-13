@@ -29,4 +29,51 @@
     border-color: red;
     background-color: pink; }
 
+div#header div#search {
+  position: absolute;
+  top: 25px;
+  right: 5px;
+}
+
+div#header div#search form {
+  margin:0;
+  padding:0;
+}
+
+div#header div#serach input {
+  font-family:Verdana,Arial,Sans-serif;
+  font-size:12px;
+  margin:0;
+  padding:2px;
+}
+
+div#header div#menu {
+  background-color:#D0E0F0;
+  border:medium none;
+  font-size:12px;
+  padding:1px 5px;
+  position:absolute;
+  right:0;
+  text-align:right;
+  top:0;
+}
+
+div#header div#menu .item {
+  float:left;
+  font-weight:bold;
+  padding:3px 10px 1px;
+}
+
+div#header div#menu .item a {
+  color:blue;
+  text-decoration:none;
+}
+
+.labeled-field {
+  border: 1px solid silver;
+  color: rgb(153, 153, 153);
+  font-size: 13px; }
+
+.labeled-field.focus {
+  color: #000000; }
 
