@@ -17,7 +17,7 @@ module SkipCollabo
       URI.join(sso_openid_provider_url + "logout").to_s if sso_openid_provider_url
     end
 
-    @@config = InitialSettings[:fixed_op]
+    @@config = InitialSettings['skip_collaboration']['fixed_op']
     if sso_enabled?
       @@servers = @@config["acceptable_op_urls"]
       @@sso_openid_provider_url = @@config["fixed_openid_server_url"]

@@ -59,7 +59,7 @@ module SkipCollabo
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE
           end
         end
-        response = http.get("#{uri.path}?#{uri.query}", "X-SECRET-KEY" => InitialSettings['secret_key'])
+        response = http.get("#{uri.path}?#{uri.query}", "X-SECRET-KEY" => InitialSettings['skip_collaboration']['secret_key'])
         if response.code == "200"
           JSON.parse(response.body)
         else

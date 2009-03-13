@@ -4,7 +4,7 @@ require 'skip_collabo/initial_settings'
 describe SkipCollabo::InitialSettings do
   # see spec/initial_setting.yml
   it{
-    SkipCollabo::InitialSettings[:skip_collabolation]["skip_url"].should ==  "http://test.openskip.org"
+    SkipCollabo::InitialSettings[:skip_collaboration]["skip_url"].should ==  "http://test.openskip.org"
   }
 end
 
