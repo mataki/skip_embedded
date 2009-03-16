@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
-require 'skip_collabo/fulltext_search_cache/mediator'
+require 'skip_embedded/fulltext_search_cache/mediator'
 
 describe SkipEmbedded::FulltextSearchCache, "new('path/to/cache/root', :since => 15.seconds.ago)", :type => :model do
   before do

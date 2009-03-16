@@ -2,8 +2,8 @@ require "fileutils"
 
 require "config/environment" unless defined? ActionController
 
-require "skip_collabo/initial_settings"
-require "skip_collabo/fulltext_search_cache/mediator"
+require "skip_embedded/initial_settings"
+require "skip_embedded/fulltext_search_cache/mediator"
 
 module SkipEmbedded
   module FulltextSearchCache

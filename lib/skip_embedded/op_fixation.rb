@@ -1,5 +1,5 @@
 require 'openid'
-require 'skip_collabo/initial_settings'
+require 'skip_embedded/initial_settings'
 
 module SkipEmbedded
   class OpFixation

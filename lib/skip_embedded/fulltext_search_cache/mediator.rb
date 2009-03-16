@@ -1,5 +1,5 @@
-require 'skip_collabo/fulltext_search_cache'
-require "skip_collabo/fulltext_search_cache/partial_loader"
+require 'skip_embedded/fulltext_search_cache'
+require "skip_embedded/fulltext_search_cache/partial_loader"
 
 module SkipEmbedded
   module FulltextSearchCache

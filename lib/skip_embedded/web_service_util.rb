@@ -16,7 +16,7 @@
 # アプリケーション連携用のライブラリ
 # 別のWebアプリを呼び出す際は、WebServiceUtilを利用する
 # 呼び出されるサービスを定義する際は、ForServicesModuleをincludeする
-require 'skip_collabo/web_service_util/client'
+require 'skip_embedded/web_service_util/client'
 
 module SkipEmbedded
   class WebServiceUtil

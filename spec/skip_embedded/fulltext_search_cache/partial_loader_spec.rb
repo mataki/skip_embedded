@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
-require 'skip_collabo/fulltext_search_cache/partial_loader'
+require 'skip_embedded/fulltext_search_cache/partial_loader'
 
 describe SkipEmbedded::FulltextSearchCache::PartialLoader, "new(mock_note, 100)", :type => :model do
   before do

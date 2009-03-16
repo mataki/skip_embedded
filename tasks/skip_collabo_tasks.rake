@@ -1,8 +1,8 @@
 # desc "Explaining what the task does"
-# task :skip_collabo do
+# task :skip_embedded do
 #   # Task goes here
 # end
-namespace :skip_collabo do
+namespace :skip_embedded do
   namespace :download_thridparty do
     desc "fetch clppy.swf from 'http://github.com/mojombo/clippy/raw/master/build/clippy.swf'"
     task :clippy do

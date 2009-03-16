@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-require 'skip_collabo/op_fixation'
+require 'skip_embedded/op_fixation'
 
 describe SkipEmbedded::OpFixation, "http://openid.example.comで擬似SSOをする場合", :type => :model do
   before() do

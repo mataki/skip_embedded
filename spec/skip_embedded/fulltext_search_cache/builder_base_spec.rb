@@ -2,7 +2,7 @@
 # vim:set fileencoding=utf-8 filetype=ruby
 
 require File.expand_path("../../spec_helper", File.dirname(__FILE__))
-require 'skip_collabo/fulltext_search_cache/builder_base'
+require 'skip_embedded/fulltext_search_cache/builder_base'
 
 describe SkipEmbedded::FulltextSearchCache::BuilderBase, :type => :model do
   before do

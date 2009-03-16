@@ -3,7 +3,7 @@ require 'rake'
 require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
-require 'lib/skip_collabo'
+require 'lib/skip_embedded'
 
 desc 'Default: run unit tests.'
 task :default => :spec
@@ -16,7 +16,7 @@ Spec::Rake::SpecTask.new(:spec) do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
 end
 
-desc 'Generate documentation for the skip_collabo plugin.'
+desc 'Generate documentation for the skip_embedded plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'SkipEmbedded'
@@ -25,7 +25,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-NAME              = "skip_collabo"
+NAME              = "skip_embedded"
 AUTHOR            = "MOROHASHI Kyosuke"
 EMAIL             = "k-morohashi@esm.co.jp"
 DESCRIPTION       = "Utilities to collabolate SKIP, opensource buisiness SNS."

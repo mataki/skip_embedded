@@ -14,7 +14,7 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require File.dirname(__FILE__) + '/../spec_helper'
-require 'skip_collabo/web_service_util'
+require 'skip_embedded/web_service_util'
 
 module SkipEmbedded
   describe WebServiceUtil do

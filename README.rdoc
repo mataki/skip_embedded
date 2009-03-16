@@ -1,11 +1,11 @@
 
-= skip_collabo
+= skip_embedded
 
 Utilities to collabolate SKIP, opensource buisiness SNS.
 
 == Description
 
-skip_collabo make to build skip-collaborate apps easy,
+skip_embedded make to build skip-collaborate apps easy,
   it have the features...
 
 - Create SKIP style fulltext search cache.
@@ -18,7 +18,7 @@ skip_collabo make to build skip-collaborate apps easy,
 
 === Gem Installation
 
-	gem install skip_collabo
+	gem install skip_embedded
 
 
 == Features/Problems

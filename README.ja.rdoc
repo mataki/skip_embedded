@@ -1,5 +1,5 @@
 
-= skip_collabo
+= skip_embedded
 
 SKIPと連携するアプリを作るためのユーティリティです。
 
@@ -26,7 +26,7 @@ SKIPと連携するアプリを作るためのユーティリティです。
 
 === Gem Installation
 
-	gem install skip_collabo
+	gem install skip_embedded
 
 
 == Features/Problems
