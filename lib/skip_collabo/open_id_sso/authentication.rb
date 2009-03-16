@@ -1,4 +1,4 @@
-module SkipCollabo
+module SkipEmbedded
   module OpenIdSso
     module Authentication
       def self.included(base)
@@ -7,7 +7,7 @@ module SkipCollabo
 
       private
       def access_denied_with_open_id_sso(message = nil)
-        if op = SkipCollabo::OpFixation.sso_openid_provider_url
+        if op = SkipEmbedded::OpFixation.sso_openid_provider_url
           store_location
           authenticate_with_open_id(op, :method => "post", :return_to=>session_url, :required => SessionsController.attribute_adapter.keys) do
             access_denied_without_open_id_sso(message)

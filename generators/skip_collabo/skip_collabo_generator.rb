@@ -1,4 +1,4 @@
-class SkipCollaboGenerator < Rails::Generator::Base
+class SkipEmbeddedGenerator < Rails::Generator::Base
   def manifest
     record do |m|
       assets = %w[
@@ -18,7 +18,7 @@ class SkipCollaboGenerator < Rails::Generator::Base
   end
 
   private
-  def insert_helper(manifest, text = "\n  include SkipCollabo::Helpers", helper = "app/helpers/application_helper.rb")
+  def insert_helper(manifest, text = "\n  include SkipEmbedded::Helpers", helper = "app/helpers/application_helper.rb")
     logger.edit_helper(helper)
     case options[:command]
     when :create

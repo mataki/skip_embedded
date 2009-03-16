@@ -1,6 +1,6 @@
 require 'singleton'
 
-module SkipCollabo
+module SkipEmbedded
   class InitialSettings
     include Singleton
     def self.config=(abs_path)

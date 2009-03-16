@@ -12,5 +12,5 @@ $LOAD_PATH.unshift File.expand_path("../lib", File.dirname(__FILE__))
 
 RAILS_ENV="test"
 require 'skip_collabo/initial_settings'
-SkipCollabo::InitialSettings.config = File.expand_path("initial_settings.yml", File.dirname(__FILE__))
+SkipEmbedded::InitialSettings.config = File.expand_path("initial_settings.yml", File.dirname(__FILE__))
 

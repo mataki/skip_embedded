@@ -1,4 +1,4 @@
-module SkipCollabo
+module SkipEmbedded
   module Helpers
     include Ui
 

@@ -1,7 +1,7 @@
 require 'openid'
 require 'skip_collabo/initial_settings'
 
-module SkipCollabo
+module SkipEmbedded
   class OpFixation
     cattr_accessor :servers, :sso_openid_provider_url
 

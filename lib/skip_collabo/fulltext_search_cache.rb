@@ -5,7 +5,7 @@ require "config/environment" unless defined? ActionController
 require "skip_collabo/initial_settings"
 require "skip_collabo/fulltext_search_cache/mediator"
 
-module SkipCollabo
+module SkipEmbedded
   module FulltextSearchCache
     DEFAULT_OPTIONS = {
       :cache_dir => File.expand_path("fts_cache/app_cache", Dir.pwd),

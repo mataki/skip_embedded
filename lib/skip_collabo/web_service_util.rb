@@ -18,9 +18,9 @@
 # 呼び出されるサービスを定義する際は、ForServicesModuleをincludeする
 require 'skip_collabo/web_service_util/client'
 
-module SkipCollabo
+module SkipEmbedded
   class WebServiceUtil
-    extend SkipCollabo::WebServiceUtil::Client
+    extend SkipEmbedded::WebServiceUtil::Client
   end
 end
 

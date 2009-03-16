@@ -16,7 +16,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'skip_collabo/web_service_util'
 
-module SkipCollabo
+module SkipEmbedded
   describe WebServiceUtil do
     before do
       @logger = mock("logger")
@@ -26,7 +26,7 @@ module SkipCollabo
     describe  ".open_service" do
       before do
         ActiveSupport::Deprecation.should_receive(:warn)
-        SkipCollabo::InitialSettings.stub!(:[]).with("collaboration_apps").and_return("app" => {"url" => "http://testapp.host"})
+        SkipEmbedded::InitialSettings.stub!(:[]).with("collaboration_apps").and_return("app" => {"url" => "http://testapp.host"})
         @base = "http://testapp.host/services/user_info"
       end
       it "get_jsonをパラメータからURLを作りだすこと" do
@@ -182,14 +182,14 @@ module SkipCollabo
         end
 
         it "nilが返ること" do
-          SkipCollabo::WebServiceUtil.logger = Logger.new("/dev/null")
-          SkipCollabo::WebServiceUtil.get_json(@url, @ca_file).should be_nil
+          SkipEmbedded::WebServiceUtil.logger = Logger.new("/dev/null")
+          SkipEmbedded::WebServiceUtil.get_json(@url, @ca_file).should be_nil
         end
 
         it "ログが出力されること" do
           @logger.should_receive(:error).with("[WebServiceUtil Error] OpenSSL::SSL::SSLError to access #{@url}")
 
-          SkipCollabo::WebServiceUtil.get_json(@url, @ca_file).should be_nil
+          SkipEmbedded::WebServiceUtil.get_json(@url, @ca_file).should be_nil
         end
       end
     end

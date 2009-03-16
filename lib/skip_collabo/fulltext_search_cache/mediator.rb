@@ -1,13 +1,13 @@
 require 'skip_collabo/fulltext_search_cache'
 require "skip_collabo/fulltext_search_cache/partial_loader"
 
-module SkipCollabo
+module SkipEmbedded
   module FulltextSearchCache
     class Mediator
 
       attr_reader :cache_dir, :built
       def initialize(options = {})
-        @options = SkipCollabo::FulltextSearchCache::DEFAULT_OPTIONS.merge(options)
+        @options = SkipEmbedded::FulltextSearchCache::DEFAULT_OPTIONS.merge(options)
         @cache_dir = @options[:cache_dir]
         @built = []
 

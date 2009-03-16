@@ -1,4 +1,4 @@
-module SkipCollabo
+module SkipEmbedded
   module Helpers
     module Ui
       # From. http://github.com/mojombo/clippy/tree/master

@@ -4,14 +4,14 @@
 require File.expand_path("../../spec_helper", File.dirname(__FILE__))
 require 'skip_collabo/fulltext_search_cache/builder_base'
 
-describe SkipCollabo::FulltextSearchCache::BuilderBase, :type => :model do
+describe SkipEmbedded::FulltextSearchCache::BuilderBase, :type => :model do
   before do
     @url_writer = mock("url_writer")
 
-    SkipCollabo::FulltextSearchCache::BuilderBase.stub!(:url_writer).and_return(@url_writer)
-    SkipCollabo::FulltextSearchCache::BuilderBase.entity_name = "target"
+    SkipEmbedded::FulltextSearchCache::BuilderBase.stub!(:url_writer).and_return(@url_writer)
+    SkipEmbedded::FulltextSearchCache::BuilderBase.entity_name = "target"
 
-    @it = SkipCollabo::FulltextSearchCache::BuilderBase.new("--- entity ---")
+    @it = SkipEmbedded::FulltextSearchCache::BuilderBase.new("--- entity ---")
     @it.stub!(:root_url).and_return("http://asset.example.com/")
   end
 

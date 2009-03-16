@@ -1,9 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 require 'skip_collabo/fulltext_search_cache/mediator'
 
-describe SkipCollabo::FulltextSearchCache, "new('path/to/cache/root', :since => 15.seconds.ago)", :type => :model do
+describe SkipEmbedded::FulltextSearchCache, "new('path/to/cache/root', :since => 15.seconds.ago)", :type => :model do
   before do
-    @fts_cache = SkipCollabo::FulltextSearchCache::Mediator.new(:cache_dir => 'path/to/cache/root/app_cache', :url_prefix => "http://example.com", :since => 15.seconds.ago)
+    @fts_cache = SkipEmbedded::FulltextSearchCache::Mediator.new(:cache_dir => 'path/to/cache/root/app_cache', :url_prefix => "http://example.com", :since => 15.seconds.ago)
   end
 
   it{ @fts_cache.cache_dir.should == 'path/to/cache/root/app_cache' }
@@ -32,7 +32,7 @@ describe SkipCollabo::FulltextSearchCache, "new('path/to/cache/root', :since => 
       @model_klass.should_receive(:scoped).and_return( [model_obj = mock("model_obj")] )
       model_obj.should_receive(:id).and_return("--id--")
 
-      SkipCollabo::FulltextSearchCache::PartialLoader.should_receive(:new).with([model_obj], 1000).and_return(loader = mock("loader"))
+      SkipEmbedded::FulltextSearchCache::PartialLoader.should_receive(:new).with([model_obj], 1000).and_return(loader = mock("loader"))
       loader.should_receive(:each).and_yield( model_obj )
 
       @builder_klass = mock("builder_klass")

@@ -1,5 +1,5 @@
 
-module SkipCollabo
+module SkipEmbedded
   module FulltextSearchCache
     class BuilderBase
       include ActionController::UrlWriter

@@ -1,4 +1,4 @@
-module SkipCollabo
+module SkipEmbedded
   module FulltextSearchCache
     class PartialLoader
       def initialize(model_or_scope, limit, finder_options = {})

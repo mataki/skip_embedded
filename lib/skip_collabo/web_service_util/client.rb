@@ -6,7 +6,7 @@ require 'erb'
 
 require 'skip_collabo/initial_settings'
 
-module SkipCollabo
+module SkipEmbedded
   class WebServiceUtil
     module Client
       attr_writer :logger

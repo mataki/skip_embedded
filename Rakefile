@@ -19,7 +19,7 @@ end
 desc 'Generate documentation for the skip_collabo plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'SkipCollabo'
+  rdoc.title    = 'SkipEmbedded'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
@@ -32,7 +32,7 @@ DESCRIPTION       = "Utilities to collabolate SKIP, opensource buisiness SNS."
 HOMEPATH          = "http://github.com/moro/scope_do/tree/master"
 BIN_FILES         = %w(  )
 
-VERS              = SkipCollabo::Version
+VERS              = SkipEmbedded::Version
 REV = File.read(".svn/entries")[/committed-rev="(d+)"/, 1] rescue nil
 RDOC_OPTS = [
 	'--title', "#{NAME} documentation",
