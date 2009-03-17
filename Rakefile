@@ -25,7 +25,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-NAME              = "skip_embedded"
+NAME              = ENV["GEMNAME"] || "skip-collabo"
 AUTHOR            = "MOROHASHI Kyosuke"
 EMAIL             = "k-morohashi@esm.co.jp"
 DESCRIPTION       = "Utilities to collabolate SKIP, opensource buisiness SNS."
