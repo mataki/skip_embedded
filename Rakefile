@@ -25,11 +25,11 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-NAME              = ENV["GEMNAME"] || "skip-collabo"
+NAME              = ENV["GEMNAME"] || "skip_embedded"
 AUTHOR            = "MOROHASHI Kyosuke"
 EMAIL             = "k-morohashi@esm.co.jp"
 DESCRIPTION       = "Utilities to collabolate SKIP, opensource buisiness SNS."
-HOMEPATH          = "http://github.com/moro/scope_do/tree/master"
+HOMEPATH          = "http://github.com/openskip/skip_embedded/tree/master"
 BIN_FILES         = %w(  )
 
 VERS              = SkipEmbedded::Version
