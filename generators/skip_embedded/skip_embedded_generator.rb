@@ -6,6 +6,7 @@ class SkipEmbeddedGenerator < Rails::Generator::Base
         app/views/shared/_flash_message.html.erb
         app/views/shared/_skip_full_text_search_form.html.erb
         config/initial_settings.yml
+        lib/tasks/skip_embedded.rake
         public/javascripts/dropdown_navigation.js
         public/javascripts/labeled_text_field.js
         public/javascripts/skip_fckeditor_config.js
@@ -14,8 +15,6 @@ class SkipEmbeddedGenerator < Rails::Generator::Base
 
       assets.map{|asset| File.dirname(asset) }.uniq.each{|asset| m.directory(asset) }
       assets.each{|asset| m.file asset, asset }
-      m.file File.expand_path("../../tasks/skip_embedded.rake", File.dirname(__FILE__)),
-             "lib/tasks/skip_embedded.rake"
 
       insert_application_helper(m)
       insert_application_controller(m)
@@ -43,7 +42,7 @@ class SkipEmbeddedGenerator < Rails::Generator::Base
   end
 
   def insert_file(manifest, file, pattern, text)
-    logger.edit_helper(file)
+    logger.edit_file(file)
     return if options[:pretend]
 
     case options[:command]
