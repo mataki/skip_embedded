@@ -29,6 +29,13 @@
     border-color: red;
     background-color: pink; }
 
+div#header {
+  border-bottom:1px dashed silver;
+  height:50px;
+  /* position:relative; */
+  margin 0;
+}
+
 div#header div#search {
   position: absolute;
   top: 25px;
@@ -45,6 +52,11 @@ div#header div#serach input {
   font-size:12px;
   margin:0;
   padding:2px;
+}
+
+div#header div#logo {
+  height: 45;
+  width: 235;
 }
 
 div#header div#menu {
