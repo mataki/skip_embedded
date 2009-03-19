@@ -12,7 +12,7 @@ module SkipEmbedded
       end
 
       def login_successfully(user, personal_data)
-        if OpFixation.sso_enabled?
+        if attribute_adapter && OpFixation.sso_enabled?
           data = attribute_adapter.adapt(personal_data)
           user.update_attributes!(data.slice(:display_name))
           flash[:notice] = _("Successfully synchronized your display name with OP's")
