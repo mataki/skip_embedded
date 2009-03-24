@@ -1,4 +1,4 @@
 # SkipEmbedded
 module SkipEmbedded
-  Version = "0.0.16"
+  Version = "0.0.17"
 end

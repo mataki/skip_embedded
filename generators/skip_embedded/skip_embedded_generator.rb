@@ -12,6 +12,8 @@ class SkipEmbeddedGenerator < Rails::Generator::Base
         public/javascripts/labeled_text_field.js
         public/javascripts/skip_fckeditor_config.js
         public/stylesheets/skip_embedded.css
+        public/stylesheets/sprites/sprites.css
+        public/stylesheets/sprites/sprites.png
       ]
 
       assets.map{|asset| File.dirname(asset) }.uniq.each{|asset| m.directory(asset) }
