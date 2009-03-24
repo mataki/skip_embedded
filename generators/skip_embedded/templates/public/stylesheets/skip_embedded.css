@@ -4,14 +4,16 @@
   left: 15%;
   right: 15%;
   width: 70%;
-  z-index: 1; }
+  z-index: 2; }
   #flash_message div {
     width: 100%;
+    margin: 0;
     text-align: center;
     font-size: 12px;
     border-width: 2px;
     border-style: solid; }
     #flash_message div h3 {
+      margin: 10px;
       width: 100%; }
       #flash_message div h3 span {
         position: static;
@@ -29,17 +31,11 @@
     border-color: red;
     background-color: pink; }
 
-div#header {
-  border-bottom:1px dashed silver;
-  height:50px;
-  /* position:relative; */
-  margin 0;
-}
-
 div#header div#search {
   position: absolute;
   top: 25px;
   right: 5px;
+  z-index: -1;
 }
 
 div#header div#search form {
@@ -54,9 +50,13 @@ div#header div#serach input {
   padding:2px;
 }
 
-div#header div#logo {
-  height: 45;
-  width: 235;
+input.input_submit{
+  padding: 0;
+  font-size:11px;
+}
+
+input.input_text{
+  padding: 0;
 }
 
 div#header div#menu {
@@ -89,3 +89,7 @@ div#header div#menu .item a {
 .labeled-field.focus {
   color: #000000; }
 
+iframe#ie-select-fix {
+  border : 0;
+  position : absolute;
+}

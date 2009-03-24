@@ -7,6 +7,7 @@ class SkipEmbeddedGenerator < Rails::Generator::Base
         app/views/shared/_skip_full_text_search_form.html.erb
         config/initial_settings.yml
         lib/tasks/skip_embedded.rake
+        public/blank.html
         public/javascripts/dropdown_navigation.js
         public/javascripts/labeled_text_field.js
         public/javascripts/skip_fckeditor_config.js
