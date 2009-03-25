@@ -1,5 +1,9 @@
+== 0.0.18 / 2009-03-26
+* add dependency to moro-repim.
+
 == 0.0.17 / 2009-03-24
 * add CSS splite. Usable via icon_tag() or icon_text() in views.
+
 == 0.0.9 / 2009-03-02
 
 * initial release

@@ -35,51 +35,53 @@ BIN_FILES         = %w(  )
 VERS              = SkipEmbedded::Version
 REV = File.read(".svn/entries")[/committed-rev="(d+)"/, 1] rescue nil
 RDOC_OPTS = [
-	'--title', "#{NAME} documentation",
-	"--charset", "utf-8",
-	"--opname", "index.html",
-	"--line-numbers",
-	"--main", "README.rdoc",
-	"--inline-source",
+  '--title', "#{NAME} documentation",
+  "--charset", "utf-8",
+  "--opname", "index.html",
+  "--line-numbers",
+  "--main", "README.rdoc",
+  "--inline-source",
 ]
 
 spec = Gem::Specification.new do |s|
-	s.name              = NAME
-	s.version           = VERS
-	s.platform          = Gem::Platform::RUBY
-	s.has_rdoc          = true
-	s.extra_rdoc_files  = ["README.rdoc", "ChangeLog"]
-	s.rdoc_options     += RDOC_OPTS + ['--exclude', '^(examples|extras)/']
-	s.summary           = DESCRIPTION
-	s.description       = DESCRIPTION
-	s.author            = AUTHOR
-	s.email             = EMAIL
-	s.homepage          = HOMEPATH
-	s.executables       = BIN_FILES
-	s.bindir            = "bin" unless BIN_FILES.empty?
-	s.require_path      = "lib"
-	s.test_files        = Dir["spec/**/*_spec.rb"]
+  s.name              = NAME
+  s.version           = VERS
+  s.platform          = Gem::Platform::RUBY
+  s.has_rdoc          = true
+  s.extra_rdoc_files  = ["README.rdoc", "ChangeLog"]
+  s.rdoc_options     += RDOC_OPTS + ['--exclude', '^(examples|extras)/']
+  s.summary           = DESCRIPTION
+  s.description       = DESCRIPTION
+  s.author            = AUTHOR
+  s.email             = EMAIL
+  s.homepage          = HOMEPATH
+  s.executables       = BIN_FILES
+  s.bindir            = "bin" unless BIN_FILES.empty?
+  s.require_path      = "lib"
+  s.test_files        = Dir["spec/**/*_spec.rb"]
 
-	s.files = %w(README.rdoc ChangeLog Rakefile) +
-		Dir.glob("{bin,doc,test,lib,templates,generators,extras,website,script}/**/*") + 
-		Dir.glob("spec/**/*.rb") +
-		Dir.glob("ext/**/*.{h,c,rb}") +
-		Dir.glob("examples/**/*.rb") +
-		Dir.glob("tools/*.rb") +
-		Dir.glob("rails/*.rb") +
-		Dir.glob("lib/tasks/*.rake")
+  s.add_dependency "moro-repim", ">=0.1.4"
 
-	s.extensions = FileList["ext/**/extconf.rb"].to_a
+  s.files = %w(README.rdoc ChangeLog Rakefile) +
+    Dir.glob("{bin,doc,test,lib,templates,generators,extras,website,script}/**/*") + 
+    Dir.glob("spec/**/*.rb") +
+    Dir.glob("ext/**/*.{h,c,rb}") +
+    Dir.glob("examples/**/*.rb") +
+    Dir.glob("tools/*.rb") +
+    Dir.glob("rails/*.rb") +
+    Dir.glob("lib/tasks/*.rake")
+
+  s.extensions = FileList["ext/**/extconf.rb"].to_a
 end
 
 Rake::GemPackageTask.new(spec) do |p|
-	p.need_tar = true
-	p.gem_spec = spec
+  p.need_tar = true
+  p.gem_spec = spec
 end
 
 desc 'Show information about the gem.'
 task :debug_gem do
-	puts spec.to_ruby
+  puts spec.to_ruby
 end
 
 desc 'Update gem spec'
