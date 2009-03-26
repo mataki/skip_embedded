@@ -4,6 +4,7 @@ module SkipEmbedded
     include Sprite
 
     def self.included(base)
+      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery => [Dependencies[:jquery]]
       ActionView::Helpers::AssetTagHelper.register_javascript_expansion :skip => %w[dropdown_navigation labeled_text_field]
       ActionView::Helpers::AssetTagHelper.register_javascript_expansion :skip_fckeditor => %w[fckeditor/fckeditor skip_fckeditor_config]
 
