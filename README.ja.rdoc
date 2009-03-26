@@ -18,16 +18,9 @@ SKIPと連携するアプリを作るためのユーティリティです。
 --- clippyを使って文字列をコピーさせる機能
 --- 画面上部に表示され、自動的に消えるflash
 
-== Installation
+== インストール
 
-=== Archive Installation
-
-	rake install
-
-=== Gem Installation
-
-	gem install skip_embedded
-
+	gem install openskip-skip_embedded --source=http://gems.github.com/
 
 == Features/Problems
 
@@ -35,7 +28,7 @@ SKIPと連携するアプリを作るためのユーティリティです。
 
 == Synopsis
 
- lator
+ see Tutorial.ja.rdoc
 
 == Copyright
 

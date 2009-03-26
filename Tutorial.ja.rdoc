@@ -1,0 +1,157 @@
+== SKIP Embedded Tutorial
+== 事前にインストールしておくもの
+- Rails 2.1.2
+- rspec-1.2.2
+- rspec-rails-1.2.2
+
+== また、以下のプラグインにも依存しています。skip_embeddedをインストールすると自動的にインストールされます。
+- moro-repim
+- moro-open_id_authentication
+
+== 新規アプリケーションの作り方
+SKIP Embeddedプラグインを利用して、SKIPと連携するアプリケーションを生成します。
+
+TODOリストを管理する、SKIP Taskというアプリケーションを例に説明します。
+
+まずは、普段通りRailsアプリケーションを生成します。現在のところ、SKIPはRails 2.1.2に依存しているため、それに合わせます。
+
+ $ rails _2.1.2_ skip-task
+ $ cd skip-task
+
+リビジョン管理システムにGitを使っている場合、最初にリポジトリに登録するとよいでしょう。他のリビジョン管理システムを使っている場合は読み飛ばしてください。
+
+ $ cat > .gitignore
+ config/database.yml
+ config/initial_settings.yml
+ log/*
+ db/*.sqlite3
+ db/schema.rb
+ tmp/*
+ $ git init
+ $ git add * .gitignore
+ $ git commit -m "initial commit"
+
+さらに、テスティングフレームワーク、rspec-railsも使えるようにします。
+
+ $ ruby script/generate rspec --git
+ $ git commit -m "generate rspec"
+
+続いて、ユーザ認証を連携させます。moro-repimに含まれる、relying_partyジェネレータを実行します。
+
+ $ ruby script/generate relying_party Sessions name:string display_name:string
+
+config/environment.rbの28行目付近、依存するgemを列挙している箇所に以下のコードを追加します。
+
+ config.gem 'moro-repim', :lib => 'repim', :source => 'http://gems.github.com/'
+
+続いてskip_embeddedジェネレータを実行します。
+
+ $ ruby script/generate skip_embedded
+
+また、jQueryなどのサードパーティが開発しているファイルを取得するrakeタスクを実行します。
+
+ $ rake skip_embedded:thirdparty
+
+config/environment.rbの29行目付近、依存するgemを列挙している箇所に以下のコードを追加します。
+
+ config.gem 'openskip-skip_embedded', :lib => 'skip_embedded', :source => 'http://gems.github.com/'
+
+app/controllers/application.rbを修正します。
+7行目付近、include SkipEmbedded::OpenIdSso::Authenticationの下に、次の行を追加します。
+
+ init_gettext("skip-todo")
+ layout "skip_embedded"
+
+さらに、SKIP連携には不要なファイルを削除します。
+
+ $ rm app/views/layouts/session.html.erb public/index.hml
+
+=== アプリケーションの実装をはじめる
+これで、連携部分の基盤ができました。続いてアプリケーション本体を実装します。
+
+いまはTodoリストを作っていますので、そのためのモデルを生成します。String型のカラムtitleと、ユーザへの参照があればよいでしょう。
+
+ $ ruby script/generate rspec_scaffold todo title:string user_id:integer
+
+その後、rootへのrouteを定義します。config/routes.rbに下記を追加します。
+
+ map.root :controller => "todos"
+
+さらに、ユーザ登録後に遷移するURLを指定します。app/controllers/users_controller.rbに以下の行を追加します。
+
+ private
+ def after_create_url; root_path ; end
+
+マイグレーションを実行し、サーバを起動します。
+
+ $ rake db:migrate
+ $ ruby script/server -p 3001
+
+http://localhost:3001/にアクセスすると、initial_settings.ymlの fixed_op -> fixed_openid_server_url で定義しているOPとの間で認証を開始します。認証に成功すると、ユーザサインアップ画面になります。
+
+サインアップ後は、通常のRailsのscaffoldに遷移します。
+
+== 見た目をカスタマイズする
+skip_embeddedジェネレータは、SKIP風のレイアウトも生成します。Todoの登録画面でもこれを利用するには、コントローラごとのレイアウトを削除します。
+
+ $ rm app/views/layouts/todos.html.erb
+
+画面を再読込すると、SKIP風のレイアウトが適用されます。
+
+== AX連携
+SSO時に、ユーザ情報をOPから、Attribute Exchangeで受け取ることができます。
+app/controllers/sessions_controller.rb に次のように記述します。
+
+ use_attribute_exchange(["http://axschema.org", "http://schema.openid.net"],
+                        :display_name => "/namePerson", :name => "/namePerson/friendly" )
+
+すると、サインアップ時にOPからAttribute Exchangeで情報を受け取ることができます。この状態でOPと認証を行うと、サインアップフォームに受け取った値がはじめから入っている状態になります。
+また、同じ情報がsessionに入っているため、受け取った情報をユーザに編集させたくない場合はこちらの値を使います。
+
+== 全文検索連携
+SKIPの全文検索と連携するためのキャッシュも簡単に生成できます
+
+下記の内容で、rakeタスクを定義し、lib/tasks/skip_todos.rakeとして保存します。
+
+ namespace "skip_todos" do
+   desc "build fulltext search cache DIR=[cache_root] SINCE=[sec target updated]"
+   task :fulltext_cache do
+     require "skip_embedded/fulltext_search_cache"
+ 
+     options = {}
+     options[:cache_dir] = ENV["DIR"] unless ENV["DIR"].blank?
+     options[:since] = ENV["SINCE"] unless ENV["SINCE"].blank?
+     options[:url_prefix] = ENV["URL"] unless ENV["URL"].blank?
+ 
+     SkipEmbedded::FulltextSearchCache.build({ Todo => TodoCacheBuilder}, options)
+   end
+ end
+
+また、下記の内容でTodoCacheBuilderを定義し、lib/todo_cache_builder.rbに配置します。
+
+ require "todo"
+ require 'skip_embedded/fulltext_search_cache/builder_base'
+ 
+ class TodoCacheBuilder < SkipEmbedded::FulltextSearchCache::BuilderBase
+   self.entity_name = "todo"
+ 
+   def title; ERB::Util.h(todo.title) ; end
+   def body;  ERB::Util.h(todo.title) ; end
+ 
+   def to_meta
+     publicities = ["todo:#{todo.id}"]
+     {
+       :title => todo.title,
+       :contents_type => "todo-todo",
+       :publication_symbols => "todo:#{todo.id}",
+       :link_url => url_for(:controller => "todos", :action => "show", :id => todo),
+       :icon_url => icon_url("todo.gif")
+     }
+   end
+ end
+
+すると、全文検索連携用のキャッシュを生成できるようになります。
+
+ $ rake skip_todos:fulltext DIR=path/to/dir
+
+

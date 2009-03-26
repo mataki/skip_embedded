@@ -26,9 +26,9 @@
         </div>
         <div class="item"><%= link_to "自分の管理", user_path(current_user) %></div>
         <div class="item"><a href="FIXME" target="_blank">ヘルプ</a></div>
-        <div class="item"><%= link_to "ログイン", signout_url %></div>
+        <div class="item"><%= link_to "ログアウト", signout_url %></div>
       <% else %>
-        <div class="item"><%= link_to "ログアウト", signin_url %></div>
+        <div class="item"><%= link_to "ログイン", signin_url %></div>
       <% end %>
       <br style="clear: left" />
 

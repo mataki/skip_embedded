@@ -1,3 +1,8 @@
+== 0.0.19 / 2009-03-26
+* add dependency to gettext
+* add documentation, Tutorial.ja.rdoc
+* fix typo in skip_embedded layout
+
 == 0.0.18 / 2009-03-26
 * add dependency to moro-repim.
 
