@@ -16,7 +16,7 @@
 <body>
   <div id="header">
     <div id="logo">
-      <span class="app-name">SKIIP Task</span>
+      <span class="app-name">SKIIP ---INSERT YOUR APP NAME---</span>
     </div>
 
     <div id="menu">
@@ -40,7 +40,17 @@
   </div>
 
   <div id="main">
-    <%= yield %>
+    <div id="tab_body">
+      <%= yield %>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div class="info">
+      <div class="first">footer-first</div>
+      <div class="second">footer-second</div>
+    </div>
+    <div class="powered_by">powered by </div>
   </div>
 </body>
 <%= javascript_include_tag(:skip) %>
