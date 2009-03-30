@@ -14,7 +14,7 @@ module SkipEmbedded
     end
 
     def self.sso_openid_logout_url
-      URI.join(sso_openid_provider_url + "logout").to_s if sso_openid_provider_url
+      URI.join(sso_openid_provider_url, "logout").to_s if sso_openid_provider_url
     end
 
     @@config = InitialSettings['skip_collaboration']['fixed_op']
