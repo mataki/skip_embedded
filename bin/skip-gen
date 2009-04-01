@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+# vim:set ft=ruby:
+require 'rubygems'
+
+def check_dependency
+  missing = [
+    ['rails', '2.1.2'],
+    ['rspec', '1.2.2'],
+    ['rspec-rails', '1.2.2'],
+    ['moro-repim', '>=0.1.5'],
+    ['moro-open_id_authentication', '>=1.0.0'],
+  ].inject([]) do |miss, (name, version)|
+    begin
+      gem name, version
+    rescue LoadError => why
+      miss << why
+    end
+    miss
+  end
+  missing.empty? ? true : puts(missing)
+end
+
+def execute(path = "script/#{File.basename(__FILE__)}.sh")
+  script = File.expand_path("../" + path, File.dirname(__FILE__))
+  system("sh", "-x", script, ARGV.shift)
+end
+
+check_dependency && execute
+
