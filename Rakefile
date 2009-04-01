@@ -30,7 +30,7 @@ AUTHOR            = "MOROHASHI Kyosuke"
 EMAIL             = "k-morohashi@esm.co.jp"
 DESCRIPTION       = "Utilities to collabolate SKIP, opensource buisiness SNS."
 HOMEPATH          = "http://github.com/openskip/skip_embedded/tree/master"
-BIN_FILES         = %w(  )
+BIN_FILES         = %w(skip-gen)
 
 VERS              = SkipEmbedded::Version
 REV = File.read(".svn/entries")[/committed-rev="(d+)"/, 1] rescue nil
