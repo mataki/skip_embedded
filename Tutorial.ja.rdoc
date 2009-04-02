@@ -3,84 +3,29 @@
 - Rails 2.1.2
 - rspec-1.2.2
 - rspec-rails-1.2.2
+- Cucumber-0.2.0
 
 == また、以下のプラグインにも依存しています。skip_embeddedをインストールすると自動的にインストールされます。
-- moro-repim
-- moro-open_id_authentication
+- moro-repim-0.1.6
+- moro-open_id_authentication-1.0.0
 
 == 新規アプリケーションの作り方
 SKIP Embeddedプラグインを利用して、SKIPと連携するアプリケーションを生成します。
 
 TODOリストを管理する、SKIP Taskというアプリケーションを例に説明します。
 
-まずは、普段通りRailsアプリケーションを生成します。現在のところ、SKIPはRails 2.1.2に依存しているため、それに合わせます。
+skip_embeddedをインストールすると、skip-genというコマンドが使えるようになります。これは、skip_embeddedを使ったSKIP連携アプリを生成するためのコマンドです。第一引数にはアプリケーション名を指定します。
 
- $ rails _2.1.2_ skip-task
- $ cd skip-task
+ $ skip-gen skip-todo
+ $ cd skip-todo
 
-リビジョン管理システムにGitを使っている場合、最初にリポジトリに登録するとよいでしょう。他のリビジョン管理システムを使っている場合は読み飛ばしてください。
-
- $ cat > .gitignore
- config/database.yml
- config/initial_settings.yml
- log/*
- db/*.sqlite3
- db/schema.rb
- tmp/*
- $ git init
- $ git add * .gitignore
- $ git commit -m "initial commit"
-
-さらに、テスティングフレームワーク、rspec-railsも使えるようにします。
-
- $ ruby script/generate rspec --git
- $ git commit -m "generate rspec"
-
-続いて、ユーザ認証を連携させます。moro-repimに含まれる、relying_partyジェネレータを実行します。
-
- $ ruby script/generate relying_party Sessions name:string display_name:string
-
-config/environment.rbの28行目付近、依存するgemを列挙している箇所に以下のコードを追加します。
-
- config.gem 'moro-repim', :lib => 'repim', :source => 'http://gems.github.com/'
-
-続いてskip_embeddedジェネレータを実行します。
-
- $ ruby script/generate skip_embedded
-
-また、jQueryなどのサードパーティが開発しているファイルを取得するrakeタスクを実行します。
-
- $ rake skip_embedded:thirdparty
-
-config/environment.rbの29行目付近、依存するgemを列挙している箇所に以下のコードを追加します。
-
- config.gem 'openskip-skip_embedded', :lib => 'skip_embedded', :source => 'http://gems.github.com/'
-
-app/controllers/application.rbを修正します。
-7行目付近、include SkipEmbedded::OpenIdSso::Authenticationの下に、次の行を追加します。
-
- init_gettext("skip-todo")
- layout "skip_embedded"
-
-さらに、SKIP連携には不要なファイルを削除します。
-
- $ rm app/views/layouts/session.html.erb public/index.hml
-
-=== アプリケーションの実装をはじめる
-これで、連携部分の基盤ができました。続いてアプリケーション本体を実装します。
-
-いまはTodoリストを作っていますので、そのためのモデルを生成します。String型のカラムtitleと、ユーザへの参照があればよいでしょう。
+続いて通常のRailsアプリケーションを作る手順で、アプリケーション本体を実装します。いまはTodoリストを作っていますので、そのためのモデルを生成します。String型のカラムtitleと、ユーザへの参照user_idがあればよいでしょう。
 
  $ ruby script/generate rspec_scaffold todo title:string user_id:integer
 
-その後、rootへのrouteを定義します。config/routes.rbに下記を追加します。
+その後、"/"へのアクセスした場合の遷移先を定義します。config/routes.rbに下記を追加します。
 
  map.root :controller => "todos"
-
-さらに、ユーザ登録後に遷移するURLを指定します。app/controllers/users_controller.rbに以下の行を追加します。
-
- private
- def after_create_url; root_path ; end
 
 マイグレーションを実行し、サーバを起動します。
 
