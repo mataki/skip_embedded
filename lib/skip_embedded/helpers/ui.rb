@@ -3,7 +3,7 @@ module SkipEmbedded
     module Ui
 
       def sanitize_richtext(content)
-        allowed_tags = HTML::WhiteListSanitizer.allowed_tags.dup << "table" << "tbody" << "tr" << "th" << "td" << "caption"
+        allowed_tags = HTML::WhiteListSanitizer.allowed_tags.dup << "table" << "tbody" << "tr" << "th" << "td" << "caption" << "strike"
         allowed_attributes = HTML::WhiteListSanitizer.allowed_attributes.dup << "style" << "cellspacing" << "cellpadding" << "border" << "align" << "summary"
         sanitize(content, :tags => allowed_tags, :attributes => allowed_attributes)
       end
