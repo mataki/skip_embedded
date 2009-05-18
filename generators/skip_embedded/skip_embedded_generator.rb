@@ -11,13 +11,12 @@ class SkipEmbeddedGenerator < Rails::Generator::Base
         public/javascripts/dropdown_navigation.js
         public/javascripts/labeled_text_field.js
         public/javascripts/skip_fckeditor_config.js
-        public/stylesheets/skip_embedded.css
-        public/stylesheets/sprites/sprites.css
-        public/stylesheets/sprites/sprites.png
       ]
 
       assets.map{|asset| File.dirname(asset) }.uniq.each{|asset| m.directory(asset) }
       assets.each{|asset| m.file asset, asset }
+
+      m.dependency('skip_embedded_stylesheets', [])
 
       insert_application_helper(m)
       insert_application_controller(m)

@@ -6,8 +6,8 @@ require 'rubygems'
 def check_dependency
   missing = [
     ['rails', '2.1.2'],
-    ['rspec', '1.2.2'],
-    ['rspec-rails', '1.2.2'],
+    ['rspec', '1.2.6'],
+    ['rspec-rails', '1.2.6'],
     ['moro-repim', '>=0.1.5'],
     ['moro-open_id_authentication', '>=1.0.0'],
   ].inject([]) do |miss, (name, version)|
