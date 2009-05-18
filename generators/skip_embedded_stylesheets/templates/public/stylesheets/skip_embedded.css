@@ -96,7 +96,7 @@ div#footer {
     margin: auto;
     padding: 5px 200px 0 0; }
     div#footer .info .first {
-      border-bottom: 1px dashed #cccccc;
+      border-bottom: 1px dashed #ccc;
       padding-bottom: 4px; }
     div#footer .info .second {
       padding-top: 5px; }
@@ -154,15 +154,3 @@ input.input_text {
 iframe#ie-select-fix {
   border: 0;
   position: absolute; }
-
-div#main {
-  position: relative;
-  padding: 10px 10px 10px 15px;
-  _width: 100%;
-  background: url("http://user.openskip.org/stylesheets/skins/silver/back.png"); }
-  div#main div#tab_body {
-    background-color: #FFFFFF;
-    margin-right: 10px;
-    padding: 10px;
-    position: relative;
-    border: 1px dashed silver; }
